@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '#FFA500', '#4B0082', '#8B4513', '#000000'
     ];
 
-    // 1. Inicializar Paleta
+    // 1. Inicializar Paleta Dinámica
     function initPalette() {
         palette.innerHTML = '';
         defaultColors.forEach((color, index) => {
@@ -106,17 +106,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!clientX || !clientY) return;
 
-        // Centrar perfectamente el círculo de 160px en el puntero
-        magnifier.style.left = `${clientX - 80}px`;
-        magnifier.style.top = `${clientY - 80}px`;
+        // Centrar perfectamente el círculo en el puntero (ajustado para móvil y desktop)
+        const isMobile = window.innerWidth <= 768;
+        const offset = isMobile ? 65 : 80; // Mitad del tamaño de la lupa según CSS
+
+        magnifier.style.left = `${clientX - offset}px`;
+        magnifier.style.top = `${clientY - offset}px`;
     }
 
     // Eventos para mover la lupa
     canvasContainer.addEventListener('mousemove', moveMagnifier);
-    canvasContainer.addEventListener('touchmove', moveMagnifier, { passive: true });
+    
+    // Evento táctil con bloqueo de scroll nativo para que ande joya en smartphones
+    canvasContainer.addEventListener('touchmove', (e) => {
+        if (magnifierActive) {
+            e.preventDefault(); // Clava la pantalla en su lugar para evitar el "drag-to-refresh" o scroll
+            moveMagnifier(e);
+        }
+    }, { passive: false });
 
     // Ocultar la lupa si el cursor sale del panel educativo
     canvasContainer.addEventListener('mouseleave', () => {
+        magnifier.classList.add('hidden');
+    });
+    canvasContainer.addEventListener('touchend', () => {
         magnifier.classList.add('hidden');
     });
 

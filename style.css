@@ -219,3 +219,75 @@ main {
 .hidden {
     display: none !important;
 }
+/* --- ADAPTACIÓN RESPONSIVA PARA CELULARES (MODELO RGB) --- */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        overflow-y: auto; /* Permite scroll si el dispositivo es muy chico */
+    }
+
+    header {
+        padding: 0.8rem 1.2rem;
+    }
+
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    main {
+        flex-direction: column; /* Apila el canvas y los controles verticalmente */
+        padding: 1rem;
+        gap: 1rem;
+        height: calc(100vh - 60px); /* Usa el alto disponible de la pantalla */
+    }
+
+    #canvas-container {
+        flex: 1.2; /* Le da prioridad de espacio al lienzo de color */
+        min-height: 250px;
+    }
+
+    #controls {
+        width: 100%; /* El panel ocupa todo el ancho en móviles */
+        flex: 1;
+        padding: 1rem;
+        gap: 0.8rem;
+        justify-content: flex-start;
+    }
+
+    #palette-container h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+    }
+
+    #palette {
+        grid-template-columns: repeat(4, 1fr); /* Reorganiza las muestras en 4 columnas cómodas */
+        gap: 8px;
+        margin-bottom: 0.8rem;
+    }
+
+    .custom-color-picker input[type="color"] {
+        height: 35px;
+    }
+
+    /* Redimensionamos la lupa para que sea cómoda de arrastrar con el pulgar */
+    #magnifier {
+        width: 130px;
+        height: 130px;
+        border-width: 3px;
+    }
+
+    /* Cartel numérico RGB adaptado para móviles */
+    #rgb-display {
+        top: -30px;
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+
+    #pixel-matrix {
+        gap: 5px; /* Reduce un poco la separación de las barritas */
+    }
+    
+    .subpixel {
+        border-radius: 10px;
+    }
+}

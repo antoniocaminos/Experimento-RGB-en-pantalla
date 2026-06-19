@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Píxeles - Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo">Simulador de Píxeles</h1>
+        <button id="reset-btn" class="btn btn-danger">Resetear Lab</button>
+    </header>
+
+    <main>
+        <div id="canvas-container">
+            <div id="color-canvas"></div>
+        </div>
+
+        <aside id="controls">
+            <div id="palette-container">
+                <h3>Seleccionar Color</h3>
+                <div id="palette">
+                    </div>
+                <div class="custom-color-picker">
+                    <label for="custom-color">Color personalizado:</label>
+                    <input type="color" id="custom-color" value="#ff0000">
+                </div>
+            </div>
+            <button id="magnifier-btn" class="btn btn-success">Activar Lupa</button>
+        </aside>
+    </main>
+
+    <div id="magnifier" class="hidden">
+        <div id="rgb-display">
+            <span id="rgb-values">R: 255 | G: 0 | B: 0</span>
+        </div>
+        <div id="pixel-matrix">
+            <div class="subpixel red"></div>
+            <div class="subpixel green"></div>
+            <div class="subpixel blue"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
